@@ -54,8 +54,3 @@ CREATE TABLE IF NOT EXISTS unavailable (
     reason         VARCHAR(255) NOT NULL,
     CONSTRAINT chk_unavail_dates CHECK (time_end IS NULL OR time_end > time_start)
 );
-
--- Индексы для оптимизации выборок за интервалы времени
-CREATE INDEX IF NOT EXISTS idx_sessions_time ON sessions(time_start, time_end);
-CREATE INDEX IF NOT EXISTS idx_unavailable_time ON unavailable(time_start, time_end);
-CREATE INDEX IF NOT EXISTS idx_bookings_seat_time ON bookings(seat_id, time_start, time_end);
